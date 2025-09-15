@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spa Client Intake Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6a89cc 0%, #4a69bd 100%);
+            padding: 25px 30px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .form-container {
+            padding: 30px;
+        }
+        
+        .form-section {
+            margin-bottom: 25px;
+        }
+        
+        .form-section h2 {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px 15px;
+        }
+        
+        .form-group {
+            flex: 1 0 200px;
+            padding: 0 10px;
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #6a89cc;
+            box-shadow: 0 0 0 3px rgba(106, 137, 204, 0.2);
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .next-btn {
+            background: linear-gradient(135deg, #6a89cc 0%, #4a69bd 100%);
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(74, 105, 189, 0.3);
+        }
+        
+        .next-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 105, 189, 0.4);
+        }
+        
+        .required::after {
+            content: " *";
+            color: #e74c3c;
+        }
+        
+        .success-message {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .success-message.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .success-message h2 {
+            color: #2ecc71;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        
+        .success-message p {
+            color: #7f8c8d;
+            margin-bottom: 25px;
+            max-width: 400px;
+            line-height: 1.5;
+        }
+        
+        .success-btn {
+            background: linear-gradient(135deg, #6a89cc 0%, #4a69bd 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .success-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(74, 105, 189, 0.4);
+        }
+        
+        @media (max-width: 600px) {
+            .form-group {
+                flex: 1 0 100%;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Spa Client Intake Form</h1>
+            <p>Please provide your information to help us serve you better</p>
+        </div>
+        
+        <div class="form-container">
+            <form id="spaIntakeForm">
+                <div class="form-section">
+                    <h2>Personal Information</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName" class="required">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName" class="required">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone" class="required">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="required">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h2>Address Information</h2>
+                    <div class="form-group">
+                        <label for="streetAddress" class="required">Street Address</label>
+                        <input type="text" id="streetAddress" name="streetAddress" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="addressLine2">Address Line 2</label>
+                        <input type="text" id="addressLine2" name="addressLine2">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city" class="required">City</label>
+                            <input type="text" id="city" name="city" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="state" class="required">State/Province</label>
+                            <input type="text" id="state" name="state" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="postalCode" class="required">Postal/Zip Code</label>
+                            <input type="text" id="postalCode" name="postalCode" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country" class="required">Country</label>
+                            <select id="country" name="country" required>
+                                <option value="">Select Country</option>
+                                <option value="USA">United States</option>
+                                <option value="USA">Nigeria States</option>
+                                <option value="UK">United Kingdom</option>
+                                <option value="CAN">Canada</option>
+                                <option value="AUS">Australia</option>
+                                <option value="GER">Germany</option>
+                                <option value="FRA">France</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btn-container">
+                    <button type="submit" class="next-btn">Submit Form</button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="success-message" id="successMessage">
+            <h2>Thank You!</h2>
+            <p>Your form has been submitted successfully. We will contact you shortly to schedule your appointment.</p>
+            <button class="success-btn" id="newFormButton">Fill Out New Form</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('spaIntakeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // This is to Show success message
+            document.getElementById('successMessage').classList.add('visible');
+            
+            // and Clear form data after showing the sucess message
+            this.reset();
+        });
+        
+        document.getElementById('newFormButton').addEventListener('click', function() {
+            // And when we click the fill new form button it will Hide success message
+            document.getElementById('successMessage').classList.remove('visible');
+        });
+    </script>
+</body>
+</html>
