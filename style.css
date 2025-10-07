@@ -223,6 +223,7 @@ body {
 #replay {
   cursor: pointer;
   z-index: 3;
+  text-color:green
 }
 
 /* Media Queries */
